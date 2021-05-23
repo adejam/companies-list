@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import styles from '../../styles/Companies.module.css';
 import Link from 'next/link';
+import { server } from '../../config'
 
 export const getStaticProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const response = await fetch(`${server}/api/companies`);
   const companiesInArray = await response.json();
 
   return {

@@ -1,5 +1,6 @@
 nav {
-  height: 56px;
+  min-height: 56px;
+  flex-direction: column;
 }
 
 nav,
@@ -15,6 +16,17 @@ footer {
   padding: 30px 0;
   margin-top: 60px;
   color: #777;
+}
+
+.btn {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  margin: 20px auto;
+  background: #4979ff;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
 }
 
 .not-found {

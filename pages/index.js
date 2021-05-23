@@ -16,7 +16,7 @@ export default function Home() {
           Built with Nextjs
         </p>
         <Link href="/companies">
-          <a className={styles.btn}>Show Companies List</a>
+          <a className="btn">Show Companies List</a>
         </Link>
       </article>
     </>
