@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
       <h1 className={styles.title}>Welcome to Companies List</h1>
       <article className="bg-white p-10">
-        <p className={[styles.title, 'p-10'].join(' ')}>
+        <p className={styles.title + ' p-10'}>
           This Project shows a list of companies and their details
           <br /> <br />
           Built with Nextjs
