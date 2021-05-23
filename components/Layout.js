@@ -8,10 +8,11 @@ const Layout = ({ children }) => {
       <Head>
         <title>Companies List</title>
         <meta name="description" content="Adeleye jamiu companies list app" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="keywords" content="Companies list" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Navbar />
-      {children}
+      <main className="mx-auto">{children}</main>
       <Footer />
     </div>
   );

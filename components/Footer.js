@@ -1,6 +1,6 @@
 const Footer = () => {
     return ( 
-        <footer>
+        <footer className="ta-center bt-block">
             <div>
                 <p>Copyright 2021 Companies list</p>
             </div>
