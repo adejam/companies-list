@@ -1,8 +1,13 @@
+import Head from 'next/head';
+
 const Companies = () => {
     return ( 
-        <div>
+        <>
+        <Head>
+        <title>Companies List | Lists</title>
+      </Head>
             <h1>ALl Companies</h1>
-        </div>
+        </>
      );
 }
  

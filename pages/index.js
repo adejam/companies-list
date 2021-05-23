@@ -1,10 +1,13 @@
-// import Image from 'next/image';
+import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Companies List | Home</title>
+      </Head>
       <h1 className={styles.title}>Welcome to Companies List</h1>
       <article className="bg-white p-10">
         <p className={[styles.title, 'p-10'].join(' ')}>
@@ -16,6 +19,6 @@ export default function Home() {
           <a className={styles.btn}>Show Companies List</a>
         </Link>
       </article>
-    </div>
+    </>
   );
 }
