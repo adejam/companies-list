@@ -68,6 +68,15 @@ select:focus,
   margin-left: auto;
 }
 
+.my-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.d-block {
+  display: block !important;
+}
+
 .d-none {
   display: none;
 }
@@ -77,7 +86,7 @@ select:focus,
 }
 
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .justify-between {
@@ -143,6 +152,14 @@ select:focus,
 
 .w-full {
   width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .uppercase {

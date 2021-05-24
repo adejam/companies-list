@@ -40,7 +40,7 @@ const Company = ({ company }) => {
         <p className="ta-center mb-10"><b>CEO:</b>{company.ceo}</p>
         <p className="ta-center">{company.about}</p>
         <Link href="/companies">
-          <a className="btn">Go back</a>
+          <a className="btn d-block btn-primary my-10 mx-auto">Go back</a>
         </Link>
       </article>
     </section>
