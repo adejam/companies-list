@@ -11,7 +11,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "extends": ["airbnb", "plugin:react/recommended"],
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "plugins": ["react", "prettier"],
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
@@ -19,16 +19,8 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "react/jsx-props-no-spreading": "off",
-    "arrow-parens": ["error", "as-needed"],
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "components": ["Link"],
-        "specialLink": ["hrefLeft", "hrefRight"],
-        "aspects": ["invalidHref", "preferButton"]
-      }
-    ]
+    "arrow-parens": ["error", "as-needed"]
   },
   "ignorePatterns": ["dist/", "build/", ".next/"],
-  "root":true
+  "root": true
 }
