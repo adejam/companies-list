@@ -8,7 +8,7 @@ The project demonstrates the use of Next-js in building a web application.
 
 ## Features
 
-- 
+-
 
 ## Technology Used
 
