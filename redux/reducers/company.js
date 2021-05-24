@@ -2,28 +2,22 @@ import {
   FETCH_COMPANY_SUCCESS,
   ADD_COMPANY_SUCCESS,
   DELETE_COMPANY_SUCCESS,
-  FETCH_COMPANY_FAILURE,
 } from '../actionTypes/companyActionTypes';
 
 import companies from '../../data';
 
-const companyReducer = (state = companies, action) => {
+const companyReducer = (state = { companies }, action) => {
+  console.log(action.payload);
   switch (action.type) {
     case FETCH_COMPANY_SUCCESS:
       return {
         ...state,
-        company: {},
         companies: action.payload,
-      };
-    case FETCH_COMPANY_FAILURE:
-      return {
-        company: {},
-        companies: action.payload.companies,
       };
     case ADD_COMPANY_SUCCESS:
       return {
         ...state,
-        companies: state.companies.concat(action.payload),
+        companies: [action.payload, ...state.companies],
       };
     case DELETE_COMPANY_SUCCESS:
       return {

@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Modal from './Modal';
+import { addCompany } from '../redux/actions/companyAction';
 
 const AddBook = () => {
   const [values, setValues] = useState({
@@ -9,10 +11,10 @@ const AddBook = () => {
     ceo: '',
     about: '',
   });
-  //   const [companies, setCompanies] = useState(companiesArray);
+  const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
-    // setCompanies([values, ...companies]);
+    dispatch(addCompany(values));
     setValues({
       ...values,
       id: '',

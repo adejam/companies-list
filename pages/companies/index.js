@@ -1,18 +1,18 @@
 // import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from '../../styles/Companies.module.css';
 import AddBook from '../../components/addCompany';
+import { fetchCompany } from '../../redux/actions/companyAction';
 
 const Companies = () => {
-  const companies = useSelector(state => state.companies);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchCompany(companies));
-  // }, [companies]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCompany());
+  }, [fetchCompany]);
+  const { companies } = useSelector(state => state.companies);
   const handleDelete = id => {
     console.log(id);
   };
@@ -23,7 +23,7 @@ const Companies = () => {
       </Head>
       <AddBook />
       <h1 className="ta-center">All Companies</h1>
-      {companies.length >= 1 ? (
+      {companies.length ? (
         companies.map(company => (
           <Link href={`/companies/${company.id}`} key={company.id}>
             <a className={`${styles.single} d-flex w-full justify-between p-10`}>
