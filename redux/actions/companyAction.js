@@ -7,7 +7,7 @@ import companies from '../../data';
 
 const fetchCompanySuccess = companies => ({ type: FETCH_COMPANY_SUCCESS, payload: companies });
 const addCompanySuccess = values => ({ type: ADD_COMPANY_SUCCESS, payload: values });
-export const deleteCompanySuccess = id => ({ type: DELETE_COMPANY_SUCCESS, payload: id });
+const deleteCompanySuccess = id => ({ type: DELETE_COMPANY_SUCCESS, payload: id });
 
 export const fetchCompany = () => async dispatch => {
   dispatch(fetchCompanySuccess(companies));
@@ -15,4 +15,8 @@ export const fetchCompany = () => async dispatch => {
 
 export const addCompany = values => async dispatch => {
   dispatch(addCompanySuccess(values));
+};
+
+export const deleteCompany = id => async dispatch => {
+  dispatch(deleteCompanySuccess(id));
 };

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import styles from '../../styles/Companies.module.css';
 import AddBook from '../../components/addCompany';
-import { fetchCompany } from '../../redux/actions/companyAction';
+import { fetchCompany, deleteCompany } from '../../redux/actions/companyAction';
 
 const Companies = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Companies = () => {
   }, [fetchCompany]);
   const { companies } = useSelector(state => state.companies);
   const handleDelete = id => {
-    console.log(id);
+    dispatch(deleteCompany(id));
   };
   return (
     <>

@@ -22,7 +22,7 @@ const companyReducer = (state = { companies }, action) => {
     case DELETE_COMPANY_SUCCESS:
       return {
         ...state,
-        companies: state.companies.filter(company => company.bookId !== action.payload),
+        companies: state.companies.filter(company => company.id !== action.payload),
       };
     default:
       return state;
