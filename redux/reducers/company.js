@@ -3,7 +3,7 @@ import {
   ADD_COMPANY_SUCCESS,
   DELETE_COMPANY_SUCCESS,
   FETCH_COMPANY_FAILURE,
-} from '../types/companyActionTypes';
+} from '../actionTypes/companyActionTypes';
 
 import companies from '../../data';
 
