@@ -12,12 +12,22 @@
     "sourceType": "module"
   },
   "extends": ["airbnb", "plugin:react/recommended"],
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "arrow-parens": ["error", "as-needed"]
+    "react/jsx-props-no-spreading": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
   },
-  "ignorePatterns": ["dist/", "build/"]
+  "ignorePatterns": ["dist/", "build/", ".next/"]
 }

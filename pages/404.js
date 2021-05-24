@@ -16,16 +16,18 @@ const PageNotFound = () => {
 
   return (
     <div className="not-found">
-        <Head>
+      <Head>
         <title>Companies List | 404</title>
       </Head>
       <h1>Ooops...</h1>
       <h2>This page cannot be found :(</h2>
       <p>
-        Going back to the{' '}
+        Going back to the
+        {' '}
         <Link href="/">
           <a>Homepage</a>
-        </Link>{' '}
+        </Link>
+        {' '}
         in 3 seconds...
       </p>
     </div>

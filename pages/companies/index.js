@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import Head from 'next/head';
-import styles from '../../styles/Companies.module.css';
 import Link from 'next/link';
-import { server } from '../../config';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuidv4';
+import styles from '../../styles/Companies.module.css';
+import server from '../../config';
 import Modal from '../../components/Modal';
-import { v4 as uuidv4 } from 'uuid';
 
 export const getStaticProps = async () => {
   const response = await fetch(`${server}/api/companies`);
@@ -16,9 +17,14 @@ export const getStaticProps = async () => {
 };
 
 const Companies = ({ companiesArray }) => {
-  const [values, setValues] = useState({ id: '', name: '', ceo: '', about: '' });
+  const [values, setValues] = useState({
+    id: '',
+    name: '',
+    ceo: '',
+    about: '',
+  });
   const [companies, setCompanies] = useState(companiesArray);
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setCompanies([values, ...companies]);
     setValues({
@@ -29,10 +35,8 @@ const Companies = ({ companiesArray }) => {
       about: '',
     });
   };
-  const handleDelete = (id) => {
-    const updatedCompanies = companies.filter(
-      (company) => company.id !== id,
-    );
+  const handleDelete = id => {
+    const updatedCompanies = companies.filter(company => company.id !== id);
     setCompanies(updatedCompanies);
   };
   return (
@@ -59,7 +63,7 @@ const Companies = ({ companiesArray }) => {
                   name="name"
                   placeholder="Enter Company Name"
                   value={values.name}
-                  onChange={(e) => setValues({ ...values, id: uuidv4(), name: e.target.value })}
+                  onChange={e => setValues({ ...values, id: uuidv4(), name: e.target.value })}
                   required
                 />
               </div>
@@ -71,7 +75,7 @@ const Companies = ({ companiesArray }) => {
                   name="ceo"
                   placeholder="Enter Company CEO Name"
                   value={values.ceo}
-                  onChange={(e) => setValues({ ...values, id: uuidv4(), ceo: e.target.value })}
+                  onChange={e => setValues({ ...values, id: uuidv4(), ceo: e.target.value })}
                   required
                 />
               </div>
@@ -83,9 +87,9 @@ const Companies = ({ companiesArray }) => {
                   rows="3"
                   placeholder="About Company"
                   value={values.about}
-                  onChange={(e) => setValues({ ...values, id: uuidv4(), about: e.target.value })}
+                  onChange={e => setValues({ ...values, id: uuidv4(), about: e.target.value })}
                   required
-                ></textarea>
+                />
               </div>
               <div className="my-10">
                 <button type="submit" className="btn d-block btn-primary w-full mx-auto">
@@ -97,33 +101,37 @@ const Companies = ({ companiesArray }) => {
         </div>
       </div>
       <h1 className="ta-center">All Companies</h1>
-      {companies.length >= 1
-        ? companies.map((company) => (
-            <Link href={'/companies/' + company.id} key={company.id}>
-              <a className={styles.single + ' d-flex w-full justify-between p-10'}>
-                <span>
-                  <b>{company.name}</b>
-                </span>
-                <button
-                  className=" btn btn-danger"
-                  type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleDelete(company.id);
-                  }}
-                >
-                  Delete
-                </button>
-              </a>
-            </Link>
-          ))
-        : (
-          <div className="ta-center p-10 mt-10 bg-white">
-            Company list is empty. Please add a company.
-          </div>
-        )}
+      {companies.length >= 1 ? (
+        companies.map(company => (
+          <Link href={`/companies/${company.id}`} key={company.id}>
+            <a className={`${styles.single} d-flex w-full justify-between p-10`}>
+              <span>
+                <b>{company.name}</b>
+              </span>
+              <button
+                className=" btn btn-danger"
+                type="submit"
+                onClick={e => {
+                  e.preventDefault();
+                  handleDelete(company.id);
+                }}
+              >
+                Delete
+              </button>
+            </a>
+          </Link>
+        ))
+      ) : (
+        <div className="ta-center p-10 mt-10 bg-white">
+          Company list is empty. Please add a company.
+        </div>
+      )}
     </>
   );
+};
+
+Companies.propTypes = {
+  companiesArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Companies;

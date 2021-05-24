@@ -1,4 +1,4 @@
-export const companies = [
+const companies = [
   {
     id: '1',
     name: 'Amazon',
@@ -18,7 +18,7 @@ export const companies = [
     name: 'Facebook',
     ceo: 'Mark Zuckerberg',
     about:
-      'Facebook, Inc., is an American technology conglomerate based in Menlo Park, California. It was founded by Mark Zuckerberg, along with his fellow roommates and students at Harvard College, who were Eduardo Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes, originally as TheFacebook.com—today\'s Facebook, a popular global social networking service.',
+      "Facebook, Inc., is an American technology conglomerate based in Menlo Park, California. It was founded by Mark Zuckerberg, along with his fellow roommates and students at Harvard College, who were Eduardo Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes, originally as TheFacebook.com—today's Facebook, a popular global social networking service.",
   },
   {
     id: '4',
@@ -32,6 +32,8 @@ export const companies = [
     name: 'Apple',
     ceo: 'Tim Cook',
     about:
-      'Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.'
-  }
-]
+      'Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.',
+  },
+];
+
+export default companies;
