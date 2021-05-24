@@ -51,7 +51,7 @@ const Company = ({ company }) => (
 );
 
 Company.propTypes = {
-  company: PropTypes.arrayOf(PropTypes.object).isRequired,
+  company: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default Company;

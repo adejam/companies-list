@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import styles from '../../styles/Companies.module.css';
 import server from '../../config';
 import Modal from '../../components/Modal';

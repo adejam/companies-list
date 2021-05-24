@@ -27,7 +27,14 @@ const Modal = ({ modalTitle, modalId, children }) => (
 );
 
 Modal.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.symbol,
+  ]).isRequired,
   modalId: PropTypes.string.isRequired,
   modalTitle: PropTypes.string.isRequired,
 };

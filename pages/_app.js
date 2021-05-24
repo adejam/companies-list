@@ -6,15 +6,21 @@ import '../js/index';
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      {/* // eslint-disable jsx-props-no-spreading */}
       <Component {...pageProps} />
     </Layout>
   );
 }
 
 MyApp.propTypes = {
-  Component: PropTypes.string.isRequired,
-  pageProps: PropTypes.arrayOf(PropTypes.object).isRequired,
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.func,
+    PropTypes.symbol,
+  ]).isRequired,
 };
 
 export default MyApp;
