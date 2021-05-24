@@ -29,5 +29,6 @@
       }
     ]
   },
-  "ignorePatterns": ["dist/", "build/", ".next/"]
+  "ignorePatterns": ["dist/", "build/", ".next/"],
+  "root":true
 }
