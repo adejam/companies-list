@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Modal from './Modal';
 import { addCompany } from '../redux/actions/companyAction';
+import CompanyForm from './companyForm';
 
 const AddBook = () => {
   const [values, setValues] = useState({
@@ -29,54 +30,17 @@ const AddBook = () => {
         <button
           type="button"
           data-target="add-company-modal"
-          className="open-modal-button btn btn-primary"
+          className="open-modal-button btn pointer btn-primary"
         >
           Add Company
         </button>
         <Modal modalId="add-company-modal" modalTitle="Add Company">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group titleInputDiv mb-10">
-              <input
-                type="text"
-                className="form-control w-full"
-                id="company-name"
-                name="name"
-                placeholder="Enter Company Name"
-                value={values.name}
-                onChange={e => setValues({ ...values, id: uuidv4(), name: e.target.value })}
-                required
-              />
-            </div>
-            <div className="form-group titleInputDiv mb-10">
-              <input
-                type="text"
-                className="form-control w-full"
-                id="company-ceo-name"
-                name="ceo"
-                placeholder="Enter Company CEO Name"
-                value={values.ceo}
-                onChange={e => setValues({ ...values, id: uuidv4(), ceo: e.target.value })}
-                required
-              />
-            </div>
-            <div className="form-group titleInputDiv mb-10">
-              <textarea
-                className="form-control w-full"
-                id="about-company"
-                name="about"
-                rows="3"
-                placeholder="About Company"
-                value={values.about}
-                onChange={e => setValues({ ...values, id: uuidv4(), about: e.target.value })}
-                required
-              />
-            </div>
-            <div className="my-10">
-              <button type="submit" className="btn d-block btn-primary w-full mx-auto">
-                Submit
-              </button>
-            </div>
-          </form>
+          <CompanyForm
+            submitHandler={e => handleSubmit(e)}
+            values={values}
+            setValues={setValues}
+            id={uuidv4()}
+          />
         </Modal>
       </div>
     </div>

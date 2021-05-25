@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -8,11 +7,12 @@ import AddBook from '../../components/addCompany';
 import { fetchCompany, deleteCompany } from '../../redux/actions/companyAction';
 
 const Companies = () => {
+  const { companies } = useSelector(state => state.companies);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCompany());
+    dispatch(fetchCompany(companies));
   }, [fetchCompany]);
-  const { companies } = useSelector(state => state.companies);
+
   const handleDelete = id => {
     dispatch(deleteCompany(id));
   };

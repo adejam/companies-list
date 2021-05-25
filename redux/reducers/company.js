@@ -4,7 +4,8 @@ import {
   DELETE_COMPANY_SUCCESS,
 } from '../actionTypes/companyActionTypes';
 
-import companies from '../../data';
+// import companies from '../../data';
+const companies = [];
 
 const companyReducer = (state = { companies }, action) => {
   console.log(action.payload);
