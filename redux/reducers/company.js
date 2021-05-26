@@ -14,14 +14,13 @@ const companyReducer = (state = { company, companies }, action) => {
       return {
         ...state,
         company: {},
-        companies: action.payload,
+        companies: (action.payload).reverse(),
       };
     case ADD_COMPANY_SUCCESS:
       return {
         ...state,
         company: {},
         companies: [action.payload, ...state.companies],
-        // companies: state.companies.concat(action.payload),
       };
     case FETCH_SINGLE_COMPANY_SUCCESS:
       return {
@@ -33,8 +32,7 @@ const companyReducer = (state = { company, companies }, action) => {
       return {
         ...state,
         company: {},
-        // companies: state.companies.filter(company => company.id !== action.payload),
-        companies: action.payload,
+        companies: state.companies.filter(company => company.id !== action.payload),
       };
     default:
       return state;

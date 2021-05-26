@@ -29,6 +29,11 @@ export const fetchCompany = currentCompanies => async dispatch => {
 };
 
 export const addCompany = values => async dispatch => {
+  if (typeof window !== 'undefined') {
+    const companies = database.getItems();
+    companies.push(values);
+    database.setItemToDatabase(companies);
+  }
   dispatch(addCompanySuccess(values));
 };
 
@@ -38,7 +43,7 @@ export const deleteCompany = id => async dispatch => {
     const currentCompanies = companies.filter(company => company.id !== id);
 
     database.setItemToDatabase(currentCompanies);
-    dispatch(deleteCompanySuccess(currentCompanies));
+    dispatch(deleteCompanySuccess(id));
   }
 };
 
