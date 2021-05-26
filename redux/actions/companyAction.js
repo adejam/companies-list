@@ -1,22 +1,31 @@
-// import { useSelector } from 'react-redux';
+import database from '../../config/database';
 import {
   FETCH_COMPANY_SUCCESS,
   ADD_COMPANY_SUCCESS,
   DELETE_COMPANY_SUCCESS,
+  FETCH_SINGLE_COMPANY_SUCCESS,
 } from '../actionTypes/companyActionTypes';
-import companies from '../../data';
 
 const fetchCompanySuccess = companies => ({ type: FETCH_COMPANY_SUCCESS, payload: companies });
 const addCompanySuccess = values => ({ type: ADD_COMPANY_SUCCESS, payload: values });
 const deleteCompanySuccess = id => ({ type: DELETE_COMPANY_SUCCESS, payload: id });
 
+const fetchSingleCompanySuccess = company => ({
+  type: FETCH_SINGLE_COMPANY_SUCCESS,
+  payload: company,
+});
+
 export const fetchCompany = currentCompanies => async dispatch => {
-//   const { companies: currentCompanies } = useSelector(state => state.companies);
-  if (currentCompanies.length) {
-    dispatch(fetchCompanySuccess(currentCompanies));
+  let companiesToStore;
+  if (typeof window !== 'undefined') {
+    if (!database.getItems()) {
+      database.setItemToDatabase(currentCompanies);
+    }
+    companiesToStore = database.getItems();
   } else {
-    dispatch(fetchCompanySuccess(companies));
+    companiesToStore = currentCompanies;
   }
+  dispatch(fetchCompanySuccess(companiesToStore));
 };
 
 export const addCompany = values => async dispatch => {
@@ -24,5 +33,16 @@ export const addCompany = values => async dispatch => {
 };
 
 export const deleteCompany = id => async dispatch => {
-  dispatch(deleteCompanySuccess(id));
+  if (typeof window !== 'undefined') {
+    const companies = database.getItems();
+    const currentCompanies = companies.filter(company => company.id !== id);
+
+    database.setItemToDatabase(currentCompanies);
+    dispatch(deleteCompanySuccess(currentCompanies));
+  }
+};
+
+export const fetchSingleCompany = (id, companies) => async dispatch => {
+  const company = companies.filter(company => company.id === id);
+  dispatch(fetchSingleCompanySuccess(company[0]));
 };

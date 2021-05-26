@@ -1,21 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import styles from '../../styles/Companies.module.css';
 import AddBook from '../../components/addCompany';
 import { fetchCompany, deleteCompany } from '../../redux/actions/companyAction';
+import server from '../../config';
 
-const Companies = () => {
-  const { companies } = useSelector(state => state.companies);
+export const getStaticProps = async () => {
+  const response = await fetch(`${server}/api/companies`);
+  const companiesInArray = await response.json();
+
+  return {
+    props: { companiesArray: companiesInArray },
+  };
+};
+
+const Companies = ({ companiesArray }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCompany(companies));
+    dispatch(fetchCompany(companiesArray));
   }, [fetchCompany]);
-
+  const { companies } = useSelector(state => state.companies);
   const handleDelete = id => {
     dispatch(deleteCompany(id));
   };
+
   return (
     <>
       <Head>
@@ -23,7 +34,7 @@ const Companies = () => {
       </Head>
       <AddBook />
       <h1 className="ta-center">All Companies</h1>
-      {companies.length ? (
+      {companies.length >= 1 ? (
         companies.map(company => (
           <Link href={`/companies/${company.id}`} key={company.id}>
             <a className={`${styles.single} d-flex w-full justify-between p-10`}>
@@ -50,6 +61,10 @@ const Companies = () => {
       )}
     </>
   );
+};
+
+Companies.propTypes = {
+  companiesArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Companies;

@@ -4,8 +4,11 @@ import { createWrapper } from 'next-redux-wrapper';
 import rootReducer from './reducers/index';
 
 const middleware = [thunk];
-const store = () => createStore(rootReducer, compose(applyMiddleware(...middleware)));
+const store = () => createStore(
+  rootReducer,
+  compose(applyMiddleware(...middleware)),
+);
 
-const wrapper = createWrapper(store);
+const wrapper = createWrapper(store, { debug: true });
 
 export default wrapper;
