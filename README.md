@@ -20,11 +20,11 @@ In case an external API was integrated to the project, we can then use `getStati
 import server from '../../config';
 
 export const getStaticPaths = async () => {
-  const response = await fetch("API LINK TO FETCH ALL LIST OF COMPANIES");
+  const response = await fetch('API LINK TO FETCH ALL LIST OF COMPANIES');
   const data = await response.json();
 
   // map data to an array of path objects with params (id)
-  const paths = data.map(company => ({
+  const paths = data.map((company) => ({
     params: { id: company.id.toString() },
   }));
 
@@ -34,9 +34,9 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async context => {
+export const getStaticProps = async (context) => {
   const { id } = context.params;
-  const response = await fetch("API LINK TO FETCH SINGLE COMPANY DATA BASED ON ID PARAMETER");
+  const response = await fetch('API LINK TO FETCH SINGLE COMPANY DATA BASED ON ID PARAMETER');
   const data = await response.json();
   return {
     props: { company: data },

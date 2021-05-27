@@ -54,3 +54,15 @@ export const fetchSingleCompany = id => async dispatch => {
     dispatch(fetchSingleCompanySuccess(company[0]));
   }
 };
+
+export const updateCompany = values => async dispatch => {
+  if (typeof window !== 'undefined') {
+    const companies = database.getItems();
+    const company = companies.filter(company => company.id === values.id);
+    company[0].name = values.name;
+    company[0].ceo = values.ceo;
+    company[0].about = values.about;
+    database.setItemToDatabase(companies);
+    dispatch(fetchSingleCompanySuccess(company[0]));
+  }
+};
