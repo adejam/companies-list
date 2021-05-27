@@ -1,15 +1,16 @@
-import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleCompany } from '../../redux/actions/companyAction';
 
-const Company = ({ query }) => {
+const Company = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSingleCompany(query.id));
-  }, [fetchSingleCompany]);
+    dispatch(fetchSingleCompany(router.query.id));
+  }, []);
   const { company } = useSelector(state => state.companies);
   return (
     <section className="bg-white p-10">
@@ -33,11 +34,5 @@ const Company = ({ query }) => {
     </section>
   );
 };
-
-Company.propTypes = {
-  query: PropTypes.objectOf(PropTypes.string).isRequired,
-};
-
-Company.getInitialProps = ({ query }) => query;
 
 export default Company;

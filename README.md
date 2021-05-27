@@ -12,7 +12,7 @@ The project demonstrates the use of Next-js in building a web application.
 
 ## Fetch data from external API
 
-Due to using `localStorage` which would not work in `getStaticPaths` since `getStaticPaths` works on the server side, `getInitialProps` was used to get the `id` parameter which was then used to get the required data to show individual company.
+Due to using `localStorage` which would not work in `getStaticPaths` since `getStaticPaths` works on the server side, `useRouter` hook was used to get the `id` parameter which was then used to get the required data to show individual company.
 
 In case an external API was integrated to the project, we can then use `getStaticPaths` to define a list of paths that have to be rendered to HTML at build time since the page uses a dynamic route. The code below would be used to achieve this.
 
