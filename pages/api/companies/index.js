@@ -6,8 +6,8 @@ export default function handler(req, res) {
     if (!database.getItems()) {
       database.setItemToDatabase(companies);
     }
-    res.status(200).json(database.getItems());
+    res.status(200).json(JSON.stringify(database.getItems()));
   } else {
-    res.status(200).json(companies);
+    res.status(200).json(JSON.stringify(companies));
   }
 }
