@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import wrapper from '../redux/store';
+import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Component {...pageProps} />
