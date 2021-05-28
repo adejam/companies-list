@@ -13,6 +13,7 @@ const AddBook = () => {
     about: '',
   });
   const dispatch = useDispatch();
+  const [modalDisplay, setModalDisplay] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addCompany(values));
@@ -23,18 +24,25 @@ const AddBook = () => {
       ceo: '',
       about: '',
     });
+    setModalDisplay(false);
   };
+  const closeModalHandler = () => setModalDisplay(false);
   return (
     <div className="p-10 mt-10 mb-10">
       <div>
         <button
           type="button"
-          data-target="add-company-modal"
           className="open-modal-button btn pointer btn-primary"
+          onClick={() => setModalDisplay(true)}
         >
           Add Company
         </button>
-        <Modal modalId="add-company-modal" modalTitle="Add Company">
+        <Modal
+          modalId="add-company-modal"
+          modalDisplay={modalDisplay}
+          closeModal={closeModalHandler}
+          modalTitle="Add Company"
+        >
           <CompanyForm
             submitHandler={e => handleSubmit(e)}
             values={values}

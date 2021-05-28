@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 const CompanyForm = ({
   submitHandler, values, setValues, id,
 }) => {
-  const handlesubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     submitHandler(e);
   };
   return (
-    <form onSubmit={handlesubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="form-group titleInputDiv mb-10">
         <input
           type="text"
@@ -46,9 +46,7 @@ const CompanyForm = ({
         />
       </div>
       <div className="my-10">
-        <button type="submit" className="btn d-block btn-primary w-full mx-auto">
-          Submit
-        </button>
+        <input type="submit" value="submit" className="btn d-block btn-primary w-full mx-auto" />
       </div>
     </form>
   );
