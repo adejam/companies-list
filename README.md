@@ -1,6 +1,6 @@
 # REACT-BOOKLYB
 
-> Companies list is an project designed to show a list of companies and their details.
+> Companies list is an project that show a list of companies and their informations.
 
 ![screenshot](./app_screenshot.png)
 
@@ -9,6 +9,40 @@ The project demonstrates the use of Next-js in building a web application.
 ## Features
 
 -
+
+## Fetch data from external API
+
+Due to using `localStorage` which would not work in `getStaticPaths` since `getStaticPaths` works on the server side, `useRouter` hook was used to get the `id` parameter which was then used to get the required data to show individual company.
+
+In case an external API was integrated to the project, we can then use `getStaticPaths` to define a list of paths that have to be rendered to HTML at build time since the page uses a dynamic route. The code below would be used to achieve this.
+
+```js
+import server from '../../config';
+
+export const getStaticPaths = async () => {
+  const response = await fetch('API LINK TO FETCH ALL LIST OF COMPANIES');
+  const data = await response.json();
+
+  // map data to an array of path objects with params (id)
+  const paths = data.map((company) => ({
+    params: { id: company.id.toString() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  const { id } = context.params;
+  const response = await fetch('API LINK TO FETCH SINGLE COMPANY DATA BASED ON ID PARAMETER');
+  const data = await response.json();
+  return {
+    props: { company: data },
+  };
+};
+```
 
 ## Technology Used
 

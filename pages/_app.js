@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
-import '../js/index';
+import wrapper from '../redux/store';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -23,4 +23,4 @@ MyApp.propTypes = {
   ]).isRequired,
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
