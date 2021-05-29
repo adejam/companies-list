@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import database from '../../config/database';
 import {
   FETCH_COMPANY_SUCCESS,
@@ -6,16 +7,23 @@ import {
   FETCH_SINGLE_COMPANY_SUCCESS,
 } from '../actionTypes/companyActionTypes';
 
-const fetchCompanySuccess = companies => ({ type: FETCH_COMPANY_SUCCESS, payload: companies });
-const addCompanySuccess = values => ({ type: ADD_COMPANY_SUCCESS, payload: values });
-const deleteCompanySuccess = id => ({ type: DELETE_COMPANY_SUCCESS, payload: id });
+const fetchCompanySuccess = (companies: object[]) => ({ type: FETCH_COMPANY_SUCCESS, payload: companies });
+const addCompanySuccess = (values: object) => ({ type: ADD_COMPANY_SUCCESS, payload: values });
+const deleteCompanySuccess = (id: string) => ({ type: DELETE_COMPANY_SUCCESS, payload: id });
 
-const fetchSingleCompanySuccess = company => ({
+const fetchSingleCompanySuccess = (company: object) => ({
   type: FETCH_SINGLE_COMPANY_SUCCESS,
   payload: company,
 });
 
-export const fetchCompany = currentCompanies => async dispatch => {
+interface Company {
+  id: string
+  name: string
+  ceo: string
+  about: string
+}
+
+export const fetchCompany = (currentCompanies: object[]) => async (dispatch: Dispatch) => {
   let companiesToStore;
   if (typeof window !== 'undefined') {
     if (!database.getItems()) {
@@ -28,7 +36,7 @@ export const fetchCompany = currentCompanies => async dispatch => {
   dispatch(fetchCompanySuccess(companiesToStore));
 };
 
-export const addCompany = values => async dispatch => {
+export const addCompany = (values: object) => async (dispatch: Dispatch) => {
   if (typeof window !== 'undefined') {
     const companies = database.getItems();
     companies.push(values);
@@ -37,28 +45,28 @@ export const addCompany = values => async dispatch => {
   dispatch(addCompanySuccess(values));
 };
 
-export const deleteCompany = id => async dispatch => {
+export const deleteCompany = (id: string) => async (dispatch: Dispatch) => {
   if (typeof window !== 'undefined') {
     const companies = database.getItems();
-    const currentCompanies = companies.filter(company => company.id !== id);
+    const currentCompanies = companies.filter((company: Company) => company.id !== id);
 
     database.setItemToDatabase(currentCompanies);
     dispatch(deleteCompanySuccess(id));
   }
 };
 
-export const fetchSingleCompany = id => async dispatch => {
+export const fetchSingleCompany = (id: string) => async (dispatch: Dispatch) => {
   if (typeof window !== 'undefined') {
     const companies = database.getItems();
-    const company = companies.filter(company => company.id === id);
+    const company = companies.filter((company: Company) => company.id === id);
     dispatch(fetchSingleCompanySuccess(company[0]));
   }
 };
 
-export const updateCompany = values => async dispatch => {
+export const updateCompany = (values: Company) => async (dispatch: Dispatch) => {
   if (typeof window !== 'undefined') {
     const companies = database.getItems();
-    const company = companies.filter(company => company.id === values.id);
+    const company = companies.filter((company: Company) => company.id === values.id);
     company[0].name = values.name;
     company[0].ceo = values.ceo;
     company[0].about = values.about;

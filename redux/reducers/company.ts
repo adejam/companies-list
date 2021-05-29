@@ -4,11 +4,16 @@ import {
   DELETE_COMPANY_SUCCESS,
   FETCH_SINGLE_COMPANY_SUCCESS,
 } from '../actionTypes/companyActionTypes';
+import { RootState } from '../store';
+
+interface Company {
+  id: string
+}
 
 const company = {};
-const companies = [];
+const companies: object[] = [];
 
-const companyReducer = (state = { company, companies }, action) => {
+const companyReducer = (state: RootState = { company, companies }, action: any) => {
   switch (action.type) {
     case FETCH_COMPANY_SUCCESS:
       return {
@@ -32,7 +37,7 @@ const companyReducer = (state = { company, companies }, action) => {
       return {
         ...state,
         company: {},
-        companies: state.companies.filter(company => company.id !== action.payload),
+        companies: state.companies.filter( (company: Company) => company.id !== action.payload),
       };
     default:
       return state;
