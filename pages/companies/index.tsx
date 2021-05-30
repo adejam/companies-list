@@ -45,6 +45,7 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const Companies = ({ companiesArray }: CompaniesProps) => {
+  console.log(companiesArray);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchCompany(companiesArray));
