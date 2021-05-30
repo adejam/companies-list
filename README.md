@@ -1,4 +1,4 @@
-# REACT-BOOKLYB
+# COMPANIES_LIST
 
 > Companies list is an project that documents a list of companies and their informations.
 
