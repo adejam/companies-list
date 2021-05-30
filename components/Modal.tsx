@@ -1,13 +1,20 @@
 import PropTypes from 'prop-types';
 
-const Modal = ({
+interface ModalProps {
+  modalTitle: string
+  modalId: string
+  modalDisplay: boolean
+  closeModal: (...args: any[]) => any
+}
+
+const Modal: React.FunctionComponent<ModalProps> = ({
   modalTitle,
   modalId,
   children,
   modalDisplay,
   closeModal,
 }) => {
-  const closeModalByWindowClick = e => {
+  const closeModalByWindowClick  = (e: any) => {
     if (e.target.classList.contains('modal')) {
       closeModal();
     }
@@ -40,14 +47,6 @@ const Modal = ({
 };
 
 Modal.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.array,
-    PropTypes.object,
-    PropTypes.func,
-    PropTypes.symbol,
-  ]).isRequired,
   modalId: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
   modalDisplay: PropTypes.bool.isRequired,

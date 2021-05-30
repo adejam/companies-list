@@ -3,7 +3,11 @@ import Head from 'next/head';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
-const Layout = ({ children }) => (
+interface LayoutProps {
+  
+}
+
+const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => (
   <div className="content">
     <Head>
       <title>Companies List</title>

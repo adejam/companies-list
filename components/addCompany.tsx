@@ -14,7 +14,7 @@ const AddBook = () => {
   });
   const dispatch = useDispatch();
   const [modalDisplay, setModalDisplay] = useState(false);
-  const handleSubmit = e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     dispatch(addCompany(values));
     setValues({

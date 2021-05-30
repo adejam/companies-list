@@ -1,7 +1,12 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import database from '../../../config/database';
 import companies from '../../../data';
 
-export default function handler(req, res) {
+type Data = {
+
+}
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (typeof window !== 'undefined') {
     if (!database.getItems()) {
       database.setItemToDatabase(companies);

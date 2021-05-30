@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,8 +7,20 @@ import styles from '../../styles/Companies.module.css';
 import AddBook from '../../components/addCompany';
 import { fetchCompany, deleteCompany } from '../../redux/actions/companyAction';
 import server from '../../config';
+import { GetStaticProps } from 'next';
 
-export const getStaticProps = async () => {
+interface CompaniesProps {
+  companiesArray: Array<object>
+}
+
+type Company = {
+  id: string,
+  name: string,
+  ceo: string,
+  about: string,
+}
+
+export const getStaticProps: GetStaticProps = async () => {
   let companiesInArray = [];
   let error = '';
   try {
@@ -32,13 +44,13 @@ export const getStaticProps = async () => {
   };
 };
 
-const Companies = ({ companiesArray }) => {
-  const dispatch = useDispatch();
+const Companies = ({ companiesArray }: CompaniesProps) => {
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchCompany(companiesArray));
   }, [fetchCompany]);
-  const { companies } = useSelector(state => state.companies);
-  const handleDelete = id => {
+  const { companies } = useAppSelector(state => state.companies);
+  const handleDelete = (id: string) => {
     dispatch(deleteCompany(id));
   };
 
@@ -50,7 +62,7 @@ const Companies = ({ companiesArray }) => {
       <AddBook />
       <h1 className="ta-center">All Companies</h1>
       {companies.length >= 1 ? (
-        companies.map(company => (
+        companies.map((company: Company) => (
           <Link href={`/companies/${company.id}`} key={company.id}>
             <a className={`${styles.single} d-flex w-full justify-between p-10`}>
               <span>
