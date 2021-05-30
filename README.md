@@ -60,6 +60,10 @@ export const getStaticProps = async (context) => {
 
 - Typescript
 
+- Redux
+
+- LocalStorage
+
 - Javascript
 
   - Arrow function.
