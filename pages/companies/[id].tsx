@@ -67,13 +67,16 @@ const Company = () => {
           <a className="btn d-block btn-primary my-10 mx-auto">Go back</a>
         </Link>
       </article>
-      <div className="mt-10">
-        <CompanyForm
-          submitHandler={e => handleSubmit(e)}
-          values={values}
-          setValues={setValues}
-          id={values.id}
-        />
+      <div className="mt-10 edit">
+        <h3 className="ta-center my-10">Edit {company.name} Information</h3>
+        <div className="mt-10 edit-div mx-auto">
+          <CompanyForm
+            submitHandler={e => handleSubmit(e)}
+            values={values}
+            setValues={setValues}
+            id={values.id}
+          />
+        </div>
       </div>
     </section>
   );

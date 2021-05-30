@@ -8,13 +8,13 @@ export default function Home() {
       <Head>
         <title>Companies List | Home</title>
       </Head>
-      <h1 className={styles.title}>Welcome to Companies List</h1>
+      <h1 className={`${styles.title} ta-center my-10` }>Welcome to Companies List</h1>
       <article className="bg-white p-10">
         <p className={`${styles.title} p-10`}>
-          This Project shows a list of companies and their details
+          Companies documents lists of companies and their details.
           <br />
           <br />
-          Built with Nextjs
+          Built with Nextjs and Typescript
         </p>
         <Link href="/companies">
           <a className="btn btn-primary d-block my-10 mx-auto">Show Companies List</a>
