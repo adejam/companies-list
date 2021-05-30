@@ -55,7 +55,7 @@ export const deleteCompany = (id: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const fetchSingleCompany = (id: string) => async (dispatch: Dispatch) => {
+export const fetchSingleCompany = (id: string | string[] | undefined) => async (dispatch: Dispatch) => {
   if (typeof window !== 'undefined') {
     const companies = database.getItems();
     const company = companies.filter((company: Company) => company.id === id);
