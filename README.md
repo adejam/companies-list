@@ -1,14 +1,17 @@
 # REACT-BOOKLYB
 
-> Companies list is an project that show a list of companies and their informations.
+> Companies list is an project that documents a list of companies and their informations.
 
 ![screenshot](./app_screenshot.png)
 
-The project demonstrates the use of Next-js in building a web application.
+The project demonstrates the use of Next-js and typescript in building a web application.
 
 ## Features
 
--
+- View companies List
+- Add a company
+- Delete a company
+- View single company
 
 ## Fetch data from external API
 
@@ -22,8 +25,7 @@ import server from '../../config';
 export const getStaticPaths = async () => {
   const response = await fetch('API LINK TO FETCH ALL LIST OF COMPANIES');
   const data = await response.json();
-
-  // map data to an array of path objects with params (id)
+  
   const paths = data.map((company) => ({
     params: { id: company.id.toString() },
   }));
@@ -56,6 +58,8 @@ export const getStaticProps = async (context) => {
 
 - [Nextjs](https://nextjs.org/)
 
+- Typescript
+
 - Javascript
 
   - Arrow function.
@@ -75,7 +79,7 @@ export const getStaticProps = async (context) => {
 
 ## Live Demo
 
-[Live demo](/)
+[Live demo](https://companies-list.vercel.app/)
 
 ### Development (Running locally)
 
@@ -120,6 +124,12 @@ You can also check against HTML Validator:
 
 ```bash
 npm run html-validator
+```
+
+To run the App
+
+```bash
+npm run dev
 ```
 
 ## Style Guides
