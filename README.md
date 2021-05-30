@@ -25,7 +25,7 @@ import server from '../../config';
 export const getStaticPaths = async () => {
   const response = await fetch('API LINK TO FETCH ALL LIST OF COMPANIES');
   const data = await response.json();
-  
+
   const paths = data.map((company) => ({
     params: { id: company.id.toString() },
   }));
@@ -86,7 +86,7 @@ export const getStaticProps = async (context) => {
 - Clone the project
 
 ```bash
-git clone https://github.com/adejam/react-booklyb.git
+git clone https://github.com/adejam/companies-list.git
 
 ```
 

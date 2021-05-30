@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { object } from 'prop-types';
 import database from '../../../config/database';
 import companies from '../../../data';
 
