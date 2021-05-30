@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleCompany, updateCompany } from '../../redux/actions/companyAction';
 import CompanyForm from '../../components/companyForm';
 import database from '../../config/database';
+import { ParsedUrlQuery } from 'querystring';
+
+type Company = {
+  id: string,
+  name: string,
+  ceo: string,
+  about: string,
+}
 
 const Company = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+  const { id }: ParsedUrlQuery = router.query
+  const dispatch = useAppDispatch();
   const [values, setValues] = useState({
     id: '',
     name: '',
@@ -17,10 +26,11 @@ const Company = () => {
     about: '',
   });
   useEffect(() => {
-    let company = {};
+    let company = [];
     if (typeof window !== 'undefined') {
       const companies = database.getItems();
-      company = companies.filter(company => company.id === router.query.id);
+      company = companies.filter((company: Company) => company.id === router.query.id);
+    
     }
     setValues({
       ...values,
@@ -29,10 +39,12 @@ const Company = () => {
       ceo: company[0].ceo,
       about: company[0].about,
     });
-    dispatch(fetchSingleCompany(router.query.id));
+    
+    dispatch(fetchSingleCompany(id));
+  
   }, []);
-  const { company } = useSelector(state => state.companies);
-  const handleSubmit = e => {
+  const { company } = useAppSelector(state => state.companies);
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     dispatch(updateCompany(values));
   };
