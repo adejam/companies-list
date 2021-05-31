@@ -12,6 +12,7 @@ The project demonstrates the use of Next-js and typescript in building a web app
 - Add a company
 - Delete a company
 - View single company
+- Update company Information
 
 ## Fetch data from external API
 

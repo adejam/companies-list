@@ -5,7 +5,11 @@ const Navbar = () => (
   <header className="bb-block bg-white">
     <nav className="d-flex justify-between mx-auto align-center">
       <div className="brand ml-10">
-        <Image src="/brand.png" alt="site brand" width={150} height={40} />
+        <Link href="/">
+          <a>
+            <Image src="/brand.png" alt="site brand" width={150} height={40} />
+          </a>
+        </Link>
       </div>
       <ul className="d-flex mr-10">
         <li className="d-flex justify-center align-center mr-10">

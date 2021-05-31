@@ -5,10 +5,32 @@ const About = () => (
     <Head>
       <title>Companies List | About</title>
     </Head>
-    <h1 className="mb-10">ABOUT PAGE</h1>
-    <div>My name is Adeleye Jamiu</div>
-    <article className="mt-10">I am a Full Stack Web Developer with focus on React, Vue and Laravel.
-      I am a developer with a solid technical background and high professional standards. I am passionate about learning and would love to work in an environment where there is a collaborative effort for career and organization growth. I am currently in Lagos, Nigeria, willing to relocate and open to remote jobs.
+    <h1>About Companies List</h1>
+    <article className="mt-10">Companies list is an project that documents a list of companies and their informations.
+    <br />
+      The project demonstrates the use of Next-js and typescript in building a web application.
+    </article>
+    <article className="my-10">
+      <h2 className="my-10">Features</h2>
+      <div className="mt-10">
+        <ul>
+          <li>View companies List</li>
+          <li>Add a company</li>
+          <li>Delete a company</li>
+          <li>View single company</li>
+          <li>Update company Information</li>
+        </ul>
+      </div>
+    </article>
+    <article className="my-10">
+      <h2 className="my-10">Major Technologies used</h2>
+      <div className="mt-10">
+        <ul>
+          <li>Next js</li>
+          <li>Typescript</li>
+          <li>Local Storage</li>
+        </ul>
+      </div>
     </article>
   </section>
 );
